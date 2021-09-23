@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
-import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Modal from "./Modal"
+import Modal from "./Modal";
+import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
+
+const useStyles = makeStyles({
+  pagination: {
+    margin: "2em 0",
+  },
+  
+});
+
+const NameButton = styled(Button)({
+  color: "black",
+  fontWeight: "bolder",
+  "&:hover":{
+    color: "white",
+    backgroundColor: "#056aa6"
+  }
+  
+});
 
 function PaginationD() {
+  const classes = useStyles();
   const [digimon, setDigimon] = useState({});
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
@@ -35,25 +53,31 @@ function PaginationD() {
   }
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
         {data
           .slice((page - 1) * 20, (page - 1) * 20 + 20)
           .map((digimonInfo) => (
             <Grid item key={digimonInfo.name} xs={3}>
-              <Button variant="text" onClick={() => handleClick(digimonInfo)}>
+              <NameButton variant="text" className={classes.button} onClick={() => handleClick(digimonInfo)}>
                 {digimonInfo.name}
-              </Button>
+              </NameButton>
             </Grid>
           ))}
-      </Grid>
-      <Stack spacing={2}>
         <Pagination
+          className={classes.pagination}
           count={Math.ceil(data.length / 20)}
           page={page}
           onChange={handleChange}
         />
-      </Stack>
-      <Modal digimon={digimon} open={open} handleClose={handleClose}/>
+      </Grid>
+
+      <Modal digimon={digimon} open={open} handleClose={handleClose} />
     </div>
   );
 }

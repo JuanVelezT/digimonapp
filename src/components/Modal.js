@@ -19,8 +19,7 @@ function Modal(props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
+          <Card elevation={0} sx={{ maxWidth: 345 }}>
               <CardMedia
                 component="img"
                 height="400"
@@ -35,7 +34,6 @@ function Modal(props) {
                   {props.digimon.level}
                 </Typography>
               </CardContent>
-            </CardActionArea>
           </Card>
         </DialogContent>
         <DialogActions>
