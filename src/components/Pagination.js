@@ -5,6 +5,17 @@ import Button from "@mui/material/Button";
 import Modal from "./Modal";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
+import Typography from '@mui/material/Typography';
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'@Copyright: Hecho por Juan V '}
+      
+     
+    </Typography>
+  );
+}
 
 const useStyles = makeStyles({
   pagination: {
@@ -91,6 +102,7 @@ function PaginationD() {
         </Grid>
       </Grid>
       <Modal digimon={digimon} open={open} handleClose={handleClose} />
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
 }
