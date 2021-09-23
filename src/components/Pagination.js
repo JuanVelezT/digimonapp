@@ -4,23 +4,23 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Modal from "./Modal";
 import { makeStyles } from "@mui/styles";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 const useStyles = makeStyles({
   pagination: {
     margin: "2em 0",
+    display: "flex",
+    justifyContent: "center",
   },
-  
 });
 
 const NameButton = styled(Button)({
   color: "black",
   fontWeight: "bolder",
-  "&:hover":{
+  "&:hover": {
     color: "white",
-    backgroundColor: "#056aa6"
-  }
-  
+    backgroundColor: "#056aa6",
+  },
 });
 
 function PaginationD() {
@@ -63,20 +63,33 @@ function PaginationD() {
         {data
           .slice((page - 1) * 20, (page - 1) * 20 + 20)
           .map((digimonInfo) => (
-            <Grid item key={digimonInfo.name} xs={3}>
-              <NameButton variant="text" className={classes.button} onClick={() => handleClick(digimonInfo)}>
+            <Grid
+              item
+              key={digimonInfo.name}
+              xs={6}
+              sm={6}
+              md={3}
+              lg={3}
+              xl={3}
+            >
+              <NameButton
+                variant="text"
+                className={classes.button}
+                onClick={() => handleClick(digimonInfo)}
+              >
                 {digimonInfo.name}
               </NameButton>
             </Grid>
           ))}
-        <Pagination
-          className={classes.pagination}
-          count={Math.ceil(data.length / 20)}
-          page={page}
-          onChange={handleChange}
-        />
+        <Grid item xs={12}>
+          <Pagination
+            className={classes.pagination}
+            count={Math.ceil(data.length / 20)}
+            page={page}
+            onChange={handleChange}
+          />
+        </Grid>
       </Grid>
-
       <Modal digimon={digimon} open={open} handleClose={handleClose} />
     </div>
   );
